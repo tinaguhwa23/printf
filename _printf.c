@@ -27,6 +27,8 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
+			int k;
+
 			switch (format[++j])
 			{
 				case 'c':
@@ -40,6 +42,35 @@ int _printf(const char *format, ...)
 					while (*str)
 					{
 						buf[buf_idx++] = *str++;
+						total_chars++;
+					}
+					break;
+				}
+				case 'd':
+				case 'i':
+				{
+					int num = va_arg(args, int);
+					char num_str[12];
+					int idx = 0, is_negative = 0;
+
+					if (num < 0)
+					{
+						is_negative = 1;
+						num = -num;
+					}
+
+					do {
+
+						num_str[idx++] = (num % 10) + '0';
+						num /= 10;
+					} while (num > 0);
+
+					if (is_negative)
+						num_str[idx++] = '-';
+
+					for (k = idx - 1; k >= 0; k--)
+					{
+						buf[buf_idx++] = num_str[j];
 						total_chars++;
 					}
 					break;
