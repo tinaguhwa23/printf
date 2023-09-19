@@ -70,7 +70,7 @@ int _printf(const char *format, ...)
 
 					for (k = idx - 1; k >= 0; k--)
 					{
-						buf[buf_idx++] = num_str[j];
+						buf[buf_idx++] = num_str[k];
 						total_chars++;
 					}
 					break;
